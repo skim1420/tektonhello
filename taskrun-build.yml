@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: build-docker-image-from-git-source-task-run
+spec:
+  taskRef:
+    name: build-docker-image-from-git-source
+  trigger:
+    type: manual
+  inputs:
+    resources:
+      - name: git-source
+        resourceRef:
+          name: tektonhello-git
+    params:
+      - name: pathToDockerFile
+        value: Dockerfile
+      - name: pathToContext
+        value: /workspace/github.com/skim1420/tektonhello
+  outputs:
+    resources:
+      - name: builtImage
+        resourceRef:
+          name: tektonhello-image
+

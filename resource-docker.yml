@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: tektonhello-image
+spec:
+  type: image
+  params:
+    - name: url
+      value: gcr.io/spinnaker-1022/tektonhello
+
